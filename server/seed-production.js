@@ -133,7 +133,7 @@ const seedProductionData = async () => {
       }
     }
 
-    // Sample products data with properly matched images
+    // Sample products data with properly matched images - CORRECTED URLS
     const productsData = [
       {
         name: "Fresh Tomatoes",
@@ -142,7 +142,7 @@ const seedProductionData = async () => {
         category: "Vegetables",
         description: "Fresh red tomatoes, perfect for cooking",
         deliveryRadius: 15,
-        image: "https://images.unsplash.com/photo-1546470427-e5ac89c8ba37?w=400&q=80",
+        image: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&q=80", // Fresh red tomatoes
       },
       {
         name: "Organic Onions",
@@ -151,7 +151,7 @@ const seedProductionData = async () => {
         category: "Vegetables",
         description: "Organic white onions, locally grown",
         deliveryRadius: 20,
-        image: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&q=80",
+        image: "https://images.unsplash.com/photo-1508747703725-719777637510?w=400&q=80", // White onions
       },
       {
         name: "Fresh Potatoes",
@@ -160,7 +160,7 @@ const seedProductionData = async () => {
         category: "Vegetables",
         description: "High quality potatoes for all cooking needs",
         deliveryRadius: 25,
-        image: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&q=80",
+        image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80", // Brown potatoes
       },
       {
         name: "Green Chilies",
@@ -169,7 +169,7 @@ const seedProductionData = async () => {
         category: "Spices",
         description: "Fresh green chilies, medium spice level",
         deliveryRadius: 10,
-        image: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&q=80",
+        image: "https://images.unsplash.com/photo-1525207902259-13015d7f0e28?w=400&q=80", // Green chilies
       },
       {
         name: "Fresh Coriander",
@@ -178,7 +178,7 @@ const seedProductionData = async () => {
         category: "Herbs",
         description: "Fresh coriander leaves for garnishing",
         deliveryRadius: 12,
-        image: "https://images.unsplash.com/photo-1628773822503-930a7eaecf80?w=400&q=80",
+        image: "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400&q=80", // Fresh coriander leaves
       },
       {
         name: "Basmati Rice",
@@ -187,7 +187,7 @@ const seedProductionData = async () => {
         category: "Grains",
         description: "Premium quality basmati rice",
         deliveryRadius: 30,
-        image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80",
+        image: "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=400&q=80", // Basmati rice grains
       },
     ]
 
