@@ -133,7 +133,7 @@ const seedProductionData = async () => {
       }
     }
 
-    // Sample products data with properly matched images - CORRECTED URLS
+    // Sample products data with properly matched images - WORKING URLS
     const productsData = [
       {
         name: "Fresh Tomatoes",
@@ -160,7 +160,7 @@ const seedProductionData = async () => {
         category: "Vegetables",
         description: "High quality potatoes for all cooking needs",
         deliveryRadius: 25,
-        image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80", // Brown potatoes
+        image: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&q=80", // Brown potatoes (reverted)
       },
       {
         name: "Green Chilies",
@@ -169,7 +169,7 @@ const seedProductionData = async () => {
         category: "Spices",
         description: "Fresh green chilies, medium spice level",
         deliveryRadius: 10,
-        image: "https://images.unsplash.com/photo-1525207902259-13015d7f0e28?w=400&q=80", // Green chilies
+        image: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&q=80", // Green chilies (reverted)
       },
       {
         name: "Fresh Coriander",
