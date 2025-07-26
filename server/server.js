@@ -20,7 +20,14 @@ const server = http.createServer(app)
 // Socket.io setup
 const io = socketIo(server, {
   cors: {
-    origin: process.env.NODE_ENV === "production" ? "https://your-frontend-domain.vercel.app" : ["http://localhost:5173", "http://localhost:5174", "http://localhost:3000", "http://localhost:3001"],
+    origin: process.env.NODE_ENV === "production" 
+      ? [
+          "https://team-dragon-freshly-yours.vercel.app",
+          "https://freshly-yours-client.vercel.app",
+          "https://freshly-yours-marketplace.vercel.app",
+          /^https:\/\/.*\.vercel\.app$/
+        ]
+      : ["http://localhost:5173", "http://localhost:5174", "http://localhost:3000", "http://localhost:3001"],
     methods: ["GET", "POST"],
   },
 })
@@ -28,7 +35,14 @@ const io = socketIo(server, {
 // Middleware
 app.use(
   cors({
-    origin: process.env.NODE_ENV === "production" ? "https://your-frontend-domain.vercel.app" : ["http://localhost:5173", "http://localhost:5174", "http://localhost:3000", "http://localhost:3001"],
+    origin: process.env.NODE_ENV === "production" 
+      ? [
+          "https://team-dragon-freshly-yours.vercel.app",
+          "https://freshly-yours-client.vercel.app",
+          "https://freshly-yours-marketplace.vercel.app", 
+          /^https:\/\/.*\.vercel\.app$/
+        ]
+      : ["http://localhost:5173", "http://localhost:5174", "http://localhost:3000", "http://localhost:3001"],
     credentials: true,
   }),
 )
