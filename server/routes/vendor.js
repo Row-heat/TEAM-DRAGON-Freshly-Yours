@@ -20,26 +20,64 @@ router.get("/products-public", async (req, res) => {
 
     console.log(`Fetched ${products.length} products from database`)
 
-    // Transform products to match frontend expectations
-    const standardProducts = products.map((product) => ({
-      id: product._id.toString(),
-      name: product.name,
-      price: product.price,
-      stock: product.stock,
-      category: product.category,
-      description: product.description,
-      deliveryRadius: product.deliveryRadius,
-      image: product.image || "https://images.unsplash.com/photo-1542838132-92c53300491e?w=400",
-      supplier: {
-        id: product.supplier._id,
-        name: product.supplier.name,
-        location: `${product.supplier.address?.city || 'Unknown'}, ${product.supplier.address?.state || 'India'}`,
-        phone: product.supplier.phone
-      },
-      unit: "per kg",
-      date: product.createdAt.toISOString().split('T')[0],
-      isActive: product.isActive
-    }))
+    // Product name to image mapping
+    const getProductImage = (productName) => {
+      const name = productName.toLowerCase();
+      
+      // Specific product images based on actual product names
+      const imageMap = {
+        'tomato': 'https://images.unsplash.com/photo-1546470427-e5ac89c8ba37?w=400&q=80',
+        'onion': 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&q=80',
+        'potato': 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&q=80',
+        'chili': 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&q=80',
+        'coriander': 'https://images.unsplash.com/photo-1628773822503-930a7eaecf80?w=400&q=80',
+        'rice': 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80',
+        'carrot': 'https://images.unsplash.com/photo-1445282768818-728615cc910a?w=400&q=80',
+        'cabbage': 'https://images.unsplash.com/photo-1594282486581-4b0b1e5b2d8c?w=400&q=80',
+        'spinach': 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400&q=80',
+        'cucumber': 'https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?w=400&q=80',
+        'cauliflower': 'https://images.unsplash.com/photo-1510627489930-0c1b0bfb6785?w=400&q=80',
+        'broccoli': 'https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?w=400&q=80'
+      };
+      
+      // Find matching image based on product name
+      for (const [key, image] of Object.entries(imageMap)) {
+        if (name.includes(key)) {
+          return image;
+        }
+      }
+      
+      // Return null if no matching image found
+      return null;
+    };
+
+    // Transform products and filter out those without proper images
+    const allProducts = products.map((product) => {
+      const productImage = product.image || getProductImage(product.name);
+      
+      return {
+        id: product._id.toString(),
+        name: product.name,
+        price: product.price,
+        stock: product.stock,
+        category: product.category,
+        description: product.description,
+        deliveryRadius: product.deliveryRadius,
+        image: productImage,
+        supplier: {
+          id: product.supplier._id,
+          name: product.supplier.name,
+          location: `${product.supplier.address?.city || 'Unknown'}, ${product.supplier.address?.state || 'India'}`,
+          phone: product.supplier.phone
+        },
+        unit: "per kg",
+        date: product.createdAt.toISOString().split('T')[0],
+        isActive: product.isActive
+      };
+    });
+
+    // Filter out products without proper images
+    const standardProducts = allProducts.filter(product => product.image !== null);
 
     res.json({
       success: true,
@@ -82,28 +120,66 @@ router.get("/products", auth, vendorAuth, async (req, res) => {
 
     console.log(`Fetched ${products.length} products from database`)
 
-    // Transform products to match frontend expectations
-    const standardProducts = products.map((product) => ({
-      id: product._id.toString(),
-      name: product.name,
-      price: product.price,
-      stock: product.stock,
-      category: product.category,
-      description: product.description,
-      deliveryRadius: product.deliveryRadius,
-      image: product.image || "https://images.unsplash.com/photo-1542838132-92c53300491e?w=400",
-      supplier: {
-        id: product.supplier._id,
-        name: product.supplier.name,
-        location: `${product.supplier.address?.city || 'Unknown'}, ${product.supplier.address?.state || 'India'}`,
-        phone: product.supplier.phone
-      },
-      unit: "per kg",
-      date: product.createdAt.toISOString().split('T')[0],
-      isActive: product.isActive
-    }))
+    // Product name to image mapping function
+    const getProductImage = (productName) => {
+      const name = productName.toLowerCase();
+      
+      // Specific product images based on actual product names
+      const imageMap = {
+        'tomato': 'https://images.unsplash.com/photo-1546470427-e5ac89c8ba37?w=400&q=80',
+        'onion': 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&q=80',
+        'potato': 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&q=80',
+        'chili': 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&q=80',
+        'coriander': 'https://images.unsplash.com/photo-1628773822503-930a7eaecf80?w=400&q=80',
+        'rice': 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80',
+        'carrot': 'https://images.unsplash.com/photo-1445282768818-728615cc910a?w=400&q=80',
+        'cabbage': 'https://images.unsplash.com/photo-1594282486581-4b0b1e5b2d8c?w=400&q=80',
+        'spinach': 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400&q=80',
+        'cucumber': 'https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?w=400&q=80',
+        'cauliflower': 'https://images.unsplash.com/photo-1510627489930-0c1b0bfb6785?w=400&q=80',
+        'broccoli': 'https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?w=400&q=80'
+      };
+      
+      // Find matching image based on product name
+      for (const [key, image] of Object.entries(imageMap)) {
+        if (name.includes(key)) {
+          return image;
+        }
+      }
+      
+      // Return null if no matching image found
+      return null;
+    };
 
-    console.log(`Successfully processed ${standardProducts.length} products`)
+    // Transform products and filter out those without proper images
+    const allProducts = products.map((product) => {
+      const productImage = product.image || getProductImage(product.name);
+      
+      return {
+        id: product._id.toString(),
+        name: product.name,
+        price: product.price,
+        stock: product.stock,
+        category: product.category,
+        description: product.description,
+        deliveryRadius: product.deliveryRadius,
+        image: productImage,
+        supplier: {
+          id: product.supplier._id,
+          name: product.supplier.name,
+          location: `${product.supplier.address?.city || 'Unknown'}, ${product.supplier.address?.state || 'India'}`,
+          phone: product.supplier.phone
+        },
+        unit: "per kg",
+        date: product.createdAt.toISOString().split('T')[0],
+        isActive: product.isActive
+      };
+    });
+
+    // Filter out products without proper images
+    const standardProducts = allProducts.filter(product => product.image !== null);
+
+    console.log(`Successfully processed ${standardProducts.length} products with proper images`)
 
     res.json({
       success: true,
