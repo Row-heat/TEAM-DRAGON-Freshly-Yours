@@ -23,7 +23,7 @@ git push -u origin main
 1. Click **"New +"** → **"Web Service"**
 2. Connect your GitHub repository: `TEAM-DRAGON-Freshly-Yours`
 3. Configure the service:
-   - **Name**: `freshly-yours-backend`
+   - **Name**: `team-dragon-freshly-yours-backend`
    - **Region**: Choose closest to your users
    - **Branch**: `main`
    - **Root Directory**: `server`
@@ -73,6 +73,32 @@ Make sure your server has a start script:
 1. Click **"Create Web Service"**
 2. Wait for deployment (5-10 minutes)
 3. Note your backend URL: `https://team-dragon-freshly-yours-backend.onrender.com`
+
+### Step 6: Seed Production Database
+After successful deployment, you need to seed the database with initial data:
+
+1. Go to your Render service dashboard
+2. Click on **"Console"** tab 
+3. Run this command to seed the database:
+   ```bash
+   npm run seed
+   ```
+4. Wait for completion message: "🎉 Production database seeding completed successfully!"
+
+**Alternative: Seed via Local Terminal**
+```bash
+# Set environment variable (replace with your MongoDB URI)
+$env:MONGO_URI="mongodb+srv://name:password@cluster0.aw43u8h.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
+# Navigate to server folder
+cd server
+
+# Install dependencies locally
+npm install
+
+# Run seed script
+npm run seed
+```
 
 ---
 

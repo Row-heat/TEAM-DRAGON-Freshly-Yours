@@ -1,66 +1,65 @@
 const express = require("express")
 const axios = require("axios")
+const Product = require("../models/Product")
+const User = require("../models/User")
 const { auth, vendorAuth } = require("../middleware/auth")
 const { fetchImagesForProducts } = require("../utils/imageUtils")
 
 const router = express.Router()
 
-// Get products from government API with real images
+// Get products from database (replacing government API)
 router.get("/products", auth, vendorAuth, async (req, res) => {
   try {
     const { search = "", limit = 50 } = req.query
 
-    console.log("Fetching products from government API...")
-    const response = await axios.get(process.env.PRODUCTS_API_URL, {
-      params: {
-        "api-key": process.env.PRODUCTS_API_KEY,
-        offset: 0,
-        limit: "all",
-        format: "json",
-      },
-    })
-
-    let products = response.data.records || []
-    console.log(`Fetched ${products.length} products from government API`)
-
-    // Filter products based on search
+    console.log("Fetching products from database...")
+    
+    // Build search query
+    let query = { isActive: true }
     if (search) {
-      products = products.filter(
-        (product) =>
-          product.commodity?.toLowerCase().includes(search.toLowerCase()) ||
-          product.market?.toLowerCase().includes(search.toLowerCase()) ||
-          product.state?.toLowerCase().includes(search.toLowerCase()),
-      )
+      query.$or = [
+        { name: { $regex: search, $options: 'i' } },
+        { category: { $regex: search, $options: 'i' } },
+        { description: { $regex: search, $options: 'i' } }
+      ]
     }
 
-    // Limit results for processing (to avoid API rate limits)
-    products = products.slice(0, Number.parseInt(limit))
+    // Fetch products from database with supplier info
+    const products = await Product.find(query)
+      .populate('supplier', 'name address.city address.state phone')
+      .limit(Number.parseInt(limit))
+      .sort({ createdAt: -1 })
 
-    console.log(`Processing ${products.length} products for images...`)
+    console.log(`Fetched ${products.length} products from database`)
 
-    // Transform products to standard format
-    const standardProducts = products.map((product, index) => ({
-      id: `gov-${product.commodity}-${product.market}-${index}`,
-      name: product.commodity || "Unknown Product",
-      price: Number.parseFloat(product.modal_price) || 0,
-      market: product.market || "Unknown Market",
-      state: product.state || "Unknown State",
-      category: product.commodity || "General",
+    // Transform products to match frontend expectations
+    const standardProducts = products.map((product) => ({
+      id: product._id.toString(),
+      name: product.name,
+      price: product.price,
+      stock: product.stock,
+      category: product.category,
+      description: product.description,
+      deliveryRadius: product.deliveryRadius,
+      image: product.image || "https://images.unsplash.com/photo-1542838132-92c53300491e?w=400",
+      supplier: {
+        id: product.supplier._id,
+        name: product.supplier.name,
+        location: `${product.supplier.address?.city || 'Unknown'}, ${product.supplier.address?.state || 'India'}`,
+        phone: product.supplier.phone
+      },
       unit: "per kg",
-      date: product.arrival_date || new Date().toISOString().split('T')[0],
-      originalData: product,
+      date: product.createdAt.toISOString().split('T')[0],
+      isActive: product.isActive
     }))
 
-    // Fetch images for all products
-    const productsWithImages = await fetchImagesForProducts(standardProducts, 150)
-    
-    console.log(`Successfully processed ${productsWithImages.length} products with images`)
+    console.log(`Successfully processed ${standardProducts.length} products`)
 
     res.json({
       success: true,
-      products: productsWithImages,
-      total: productsWithImages.length,
-      message: `Found ${productsWithImages.length} products with images out of ${standardProducts.length} total`,
+      products: standardProducts,
+      total: standardProducts.length,
+      message: `Found ${standardProducts.length} products available for ordering`,
     })
   } catch (error) {
     console.error("Error fetching products:", error)
