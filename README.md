@@ -66,9 +66,9 @@ npm install
 
 3. Create `.env` file with:
 \`\`\`env
-MONGO_URI=mongodb+srv://dragont931:teamdragon123@cluster0.aw43u8h.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+MONGO_URI=mongodb+srv://your-username:your-password@cluster0.aw43u8h.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 JWT_SECRET=your_super_secret_jwt_key_here_make_it_long_and_secure
-PIXABAY_KEY=51483432-c52fddef81539746af875343e
+PIXABAY_KEY=your-pixabay-api-key-here
 PORT=5000
 NODE_ENV=development
 \`\`\`
