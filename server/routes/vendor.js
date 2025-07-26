@@ -24,14 +24,15 @@ router.get("/products-public", async (req, res) => {
     const getProductImage = (productName) => {
       const name = productName.toLowerCase();
       
-      // Specific product images based on actual product names
+      // Specific product images based on actual product names - FIXED URLs
       const imageMap = {
-        'tomato': 'https://images.unsplash.com/photo-1546470427-e5ac89c8ba37?w=400&q=80',
-        'onion': 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&q=80',
-        'potato': 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&q=80',
-        'chili': 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&q=80',
-        'coriander': 'https://images.unsplash.com/photo-1628773822503-930a7eaecf80?w=400&q=80',
-        'rice': 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80',
+        'tomato': 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&q=80', // Fresh red tomatoes
+        'onion': 'https://images.unsplash.com/photo-1508747703725-719777637510?w=400&q=80', // White onions
+        'potato': 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80', // Brown potatoes
+        'chili': 'https://images.unsplash.com/photo-1525207902259-13015d7f0e28?w=400&q=80', // Green chilies
+        'chilies': 'https://images.unsplash.com/photo-1525207902259-13015d7f0e28?w=400&q=80', // Green chilies plural
+        'coriander': 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400&q=80', // Fresh coriander leaves
+        'rice': 'https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=400&q=80', // Basmati rice grains
         'carrot': 'https://images.unsplash.com/photo-1445282768818-728615cc910a?w=400&q=80',
         'cabbage': 'https://images.unsplash.com/photo-1594282486581-4b0b1e5b2d8c?w=400&q=80',
         'spinach': 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400&q=80',
@@ -124,14 +125,15 @@ router.get("/products", auth, vendorAuth, async (req, res) => {
     const getProductImage = (productName) => {
       const name = productName.toLowerCase();
       
-      // Specific product images based on actual product names
+      // Specific product images based on actual product names - FIXED URLs
       const imageMap = {
-        'tomato': 'https://images.unsplash.com/photo-1546470427-e5ac89c8ba37?w=400&q=80',
-        'onion': 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&q=80',
-        'potato': 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&q=80',
-        'chili': 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&q=80',
-        'coriander': 'https://images.unsplash.com/photo-1628773822503-930a7eaecf80?w=400&q=80',
-        'rice': 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80',
+        'tomato': 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&q=80', // Fresh red tomatoes
+        'onion': 'https://images.unsplash.com/photo-1508747703725-719777637510?w=400&q=80', // White onions
+        'potato': 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80', // Brown potatoes
+        'chili': 'https://images.unsplash.com/photo-1525207902259-13015d7f0e28?w=400&q=80', // Green chilies
+        'chilies': 'https://images.unsplash.com/photo-1525207902259-13015d7f0e28?w=400&q=80', // Green chilies plural
+        'coriander': 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400&q=80', // Fresh coriander leaves
+        'rice': 'https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=400&q=80', // Basmati rice grains
         'carrot': 'https://images.unsplash.com/photo-1445282768818-728615cc910a?w=400&q=80',
         'cabbage': 'https://images.unsplash.com/photo-1594282486581-4b0b1e5b2d8c?w=400&q=80',
         'spinach': 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400&q=80',
