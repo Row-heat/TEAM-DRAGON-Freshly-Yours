@@ -35,12 +35,12 @@ git push -u origin main
 In the **Environment** tab, add these variables:
 
 ```
-MONGO_URI=mongodb+srv://dragont931:admin123@cluster0.aw43u8h.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+MONGO_URI=mongodb+srv://name:password@cluster0.aw43u8h.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 JWT_SECRET=freshly-yours-super-secret-jwt-key-2025-production-ready
 PRODUCTS_API_URL=https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070
-PRODUCTS_API_KEY=579b464db66ec23bdd000001cdc3b564546246a772a26393094f5645
+PRODUCTS_API_KEY=your-key
 PIXABAY_API_URL=https://pixabay.com/api/
-PIXABAY_API_KEY=51483432-c52fddef81539746af875343e
+PIXABAY_API_KEY=your-key
 NODE_ENV=production
 ```
 
