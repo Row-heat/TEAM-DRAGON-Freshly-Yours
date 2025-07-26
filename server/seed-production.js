@@ -169,7 +169,7 @@ const seedProductionData = async () => {
         category: "Spices",
         description: "Fresh green chilies, medium spice level",
         deliveryRadius: 10,
-        image: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&q=80", // Green chilies (reverted)
+        image: "https://images.unsplash.com/photo-1628773822503-930a7eaecf80?w=400&q=80", // Green chilies - NEW URL
       },
       {
         name: "Fresh Coriander",
