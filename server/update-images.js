@@ -28,7 +28,7 @@ const updateProductImages = async () => {
     await mongoose.connect(MONGO_URI)
     console.log("✅ Connected to MongoDB Atlas successfully!")
 
-    // Define proper image mappings with CORRECTED URLs
+    // Define proper image mappings with WORKING URLs (reverted to known working ones)
     const imageUpdates = [
       {
         name: "Fresh Tomatoes",
@@ -40,11 +40,11 @@ const updateProductImages = async () => {
       },
       {
         name: "Fresh Potatoes", 
-        image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80", // Brown potatoes
+        image: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&q=80", // Brown potatoes (reverted)
       },
       {
         name: "Green Chilies",
-        image: "https://images.unsplash.com/photo-1525207902259-13015d7f0e28?w=400&q=80", // Green chilies
+        image: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&q=80", // Green chilies (reverted)
       },
       {
         name: "Fresh Coriander",
