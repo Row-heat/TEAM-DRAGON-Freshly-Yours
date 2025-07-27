@@ -8,6 +8,7 @@ import toast from "react-hot-toast"
 import { Search, Filter, Package } from "lucide-react"
 import ProductCard from "../../components/ProductCard"
 import LoadingSpinner from "../../components/LoadingSpinner"
+import { useAuth } from "../../context/AuthContext"
 
 const Products = () => {
   const [products, setProducts] = useState([])
@@ -15,36 +16,64 @@ const Products = () => {
   const [searchTerm, setSearchTerm] = useState("")
   const [filteredProducts, setFilteredProducts] = useState([])
   const navigate = useNavigate()
+  const { user } = useAuth()
 
   useEffect(() => {
-    fetchProducts()
-  }, [])
+    if (user) {
+      fetchProducts()
+    } else {
+      navigate("/login")
+    }
+  }, [user, navigate])
 
   useEffect(() => {
     // Filter products based on search term
-    const filtered = products.filter(
-      (product) =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.market.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.state.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.category.toLowerCase().includes(searchTerm.toLowerCase()),
-    )
-    setFilteredProducts(filtered)
+    if (products.length > 0) {
+      const filtered = products.filter(
+        (product) =>
+          product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          (product.supplier?.location && product.supplier.location.toLowerCase().includes(searchTerm.toLowerCase())) ||
+          product.category.toLowerCase().includes(searchTerm.toLowerCase()),
+      )
+      setFilteredProducts(filtered)
+    }
   }, [products, searchTerm])
 
   const fetchProducts = async () => {
     try {
       setLoading(true)
-      const response = await axios.get("/vendor/products")
+      console.log("Fetching products from API...")
+      
+      // Try authenticated endpoint first
+      let response
+      try {
+        response = await axios.get("/vendor/products")
+        console.log("Authenticated API Response:", response.data)
+      } catch (authError) {
+        console.log("Authenticated endpoint failed, trying public endpoint:", authError.message)
+        // Fallback to public endpoint if authentication fails
+        response = await axios.get("/vendor/products-public")
+        console.log("Public API Response:", response.data)
+      }
 
       if (response.data.success) {
         setProducts(response.data.products)
+        setFilteredProducts(response.data.products)
+        toast.success(`Found ${response.data.products.length} fresh products!`)
       } else {
-        toast.error("Failed to fetch products")
+        toast.error(response.data.message || "Failed to fetch products")
       }
     } catch (error) {
       console.error("Error fetching products:", error)
-      toast.error("Failed to fetch products")
+      
+      if (error.response?.status === 401) {
+        toast.error("Session expired. Please login again.")
+        navigate("/login")
+      } else if (error.response?.status === 403) {
+        toast.error("Access denied. Vendor account required.")
+      } else {
+        toast.error(error.response?.data?.message || "Failed to fetch products. Please try again.")
+      }
     } finally {
       setLoading(false)
     }
