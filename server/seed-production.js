@@ -133,7 +133,7 @@ const seedProductionData = async () => {
       }
     }
 
-    // VERIFIED WORKING IMAGE URLS - PROJECT SUBMISSION READY
+    // USER PROVIDED EXACT WORKING URLS - FINAL PROJECT SUBMISSION
     const productsData = [
       {
         name: "Fresh Tomatoes",
@@ -169,7 +169,7 @@ const seedProductionData = async () => {
         category: "Spices",
         description: "Fresh green chilies, medium spice level",
         deliveryRadius: 10,
-        image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&q=80", // VERIFIED: Green chilies
+        image: "https://images.unsplash.com/photo-1576763595295-c0371a32af78?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // USER PROVIDED: Green chilies
       },
       {
         name: "Fresh Coriander",
@@ -178,7 +178,7 @@ const seedProductionData = async () => {
         category: "Herbs",
         description: "Fresh coriander leaves for garnishing",
         deliveryRadius: 12,
-        image: "https://images.unsplash.com/photo-1607531386236-88b33b1c5b04?w=400&q=80", // VERIFIED: Fresh coriander
+        image: "https://images.unsplash.com/photo-1535189487909-a262ad10c165?q=80&w=1099&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // USER PROVIDED: Fresh coriander
       },
       {
         name: "Basmati Rice",
