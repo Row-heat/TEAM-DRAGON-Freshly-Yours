@@ -1,5 +1,6 @@
 // Update existing products with proper images
 const mongoose = require("mongoose")
+require('dotenv').config()
 
 // Environment variables
 const MONGO_URI = process.env.MONGO_URI || process.env.MONGODB_URI
@@ -28,7 +29,7 @@ const updateProductImages = async () => {
     await mongoose.connect(MONGO_URI)
     console.log("✅ Connected to MongoDB Atlas successfully!")
 
-    // VERIFIED WORKING IMAGE URLS - TESTED FOR PROJECT SUBMISSION
+    // USER PROVIDED WORKING IMAGE URLS - FINAL FIX FOR SUBMISSION
     const imageUpdates = [
       {
         name: "Fresh Tomatoes",
@@ -44,11 +45,11 @@ const updateProductImages = async () => {
       },
       {
         name: "Green Chilies",
-        image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&q=80", // VERIFIED: Green chilies
+        image: "https://images.unsplash.com/photo-1576763595295-c0371a32af78?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // USER PROVIDED: Green chilies
       },
       {
         name: "Fresh Coriander",
-        image: "https://images.unsplash.com/photo-1607531386236-88b33b1c5b04?w=400&q=80", // VERIFIED: Fresh coriander
+        image: "https://images.unsplash.com/photo-1535189487909-a262ad10c165?q=80&w=1099&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // USER PROVIDED: Fresh coriander
       },
       {
         name: "Basmati Rice",

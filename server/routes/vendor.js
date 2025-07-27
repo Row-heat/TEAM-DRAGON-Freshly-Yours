@@ -24,15 +24,15 @@ router.get("/products-public", async (req, res) => {
     const getProductImage = (productName) => {
       const name = productName.toLowerCase();
       
-      // VERIFIED WORKING URLS - TESTED AND ACCURATE PRODUCT MATCHING
+      // USER PROVIDED WORKING URLS - FINAL FIX
       const imageMap = {
-        // Core products in database - GUARANTEED WORKING
+        // Core products in database - USER VERIFIED URLS
         'tomato': 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&q=80', // VERIFIED: Fresh red tomatoes
         'onion': 'https://images.unsplash.com/photo-1508747703725-719777637510?w=400&q=80', // VERIFIED: White onions
         'potato': 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&q=80', // VERIFIED: Brown potatoes
-        'chili': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&q=80', // VERIFIED: Green chilies
-        'chilies': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&q=80', // VERIFIED: Green chilies
-        'coriander': 'https://images.unsplash.com/photo-1607531386236-88b33b1c5b04?w=400&q=80', // VERIFIED: Fresh coriander
+        'chili': 'https://images.unsplash.com/photo-1576763595295-c0371a32af78?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', // USER PROVIDED: Green chilies
+        'chilies': 'https://images.unsplash.com/photo-1576763595295-c0371a32af78?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', // USER PROVIDED: Green chilies
+        'coriander': 'https://images.unsplash.com/photo-1535189487909-a262ad10c165?q=80&w=1099&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', // USER PROVIDED: Fresh coriander
         'rice': 'https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=400&q=80', // VERIFIED: Basmati rice
         // Additional vegetables
         'carrot': 'https://images.unsplash.com/photo-1445282768818-728615cc910a?w=400&q=80',
@@ -127,15 +127,15 @@ router.get("/products", auth, vendorAuth, async (req, res) => {
     const getProductImage = (productName) => {
       const name = productName.toLowerCase();
       
-      // VERIFIED WORKING URLS - TESTED AND ACCURATE PRODUCT MATCHING
+      // USER PROVIDED WORKING URLS - FINAL FIX
       const imageMap = {
-        // Core products in database - GUARANTEED WORKING
+        // Core products in database - USER VERIFIED URLS
         'tomato': 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&q=80', // VERIFIED: Fresh red tomatoes
         'onion': 'https://images.unsplash.com/photo-1508747703725-719777637510?w=400&q=80', // VERIFIED: White onions
         'potato': 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&q=80', // VERIFIED: Brown potatoes
-        'chili': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&q=80', // VERIFIED: Green chilies
-        'chilies': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&q=80', // VERIFIED: Green chilies
-        'coriander': 'https://images.unsplash.com/photo-1607531386236-88b33b1c5b04?w=400&q=80', // VERIFIED: Fresh coriander
+        'chili': 'https://images.unsplash.com/photo-1576763595295-c0371a32af78?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', // USER PROVIDED: Green chilies
+        'chilies': 'https://images.unsplash.com/photo-1576763595295-c0371a32af78?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', // USER PROVIDED: Green chilies
+        'coriander': 'https://images.unsplash.com/photo-1535189487909-a262ad10c165?q=80&w=1099&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', // USER PROVIDED: Fresh coriander
         'rice': 'https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=400&q=80', // VERIFIED: Basmati rice
         // Additional vegetables
         'carrot': 'https://images.unsplash.com/photo-1445282768818-728615cc910a?w=400&q=80',
