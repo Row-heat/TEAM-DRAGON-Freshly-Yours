@@ -2,6 +2,29 @@
 
 A digital platform helping Indian street food vendors source raw materials from verified suppliers.
 
+## 👥 Team Members & Contributions
+
+| Name   | GitHub Username                                      | Role                      | Key Contributions                                              |
+|--------|------------------------------------------------------|---------------------------|----------------------------------------------------------------|
+| Rohit  | [@Row-heat](https://github.com/Row-heat)             | Fullstack Developer       | Authentication system, backend APIs, vendor-supplier workflows |
+| Nawraj | [@Nawraj-07](https://github.com/Nawraj-07)           | Frontend Developer        | Responsive UI, Tailwind design, product card integration        |
+| Anuj   | [@anuj-singh-dev02](https://github.com/anuj-singh-dev02) | Realtime & DB Integration | Socket.io real-time updates, MongoDB models, order logic        |
+
+## 🔐 Test Accounts
+
+### 🛒 Supplier Accounts (Pre-created)
+
+| Email                             | Password      |
+|----------------------------------|---------------|
+| supplier1@freshfarms.com         | password123   |
+| supplier2@greenvalley.com        | password123   |
+| supplier3@organicharvest.com     | password123   |
+
+### 👨‍🍳 Vendor Account
+
+You can register a new vendor account directly through the application using the signup form.
+
+
 ## 🚀 Features
 
 ### Vendor Features
