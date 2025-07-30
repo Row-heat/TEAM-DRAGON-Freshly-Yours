@@ -46,7 +46,7 @@ You can register a new vendor account directly through the application using the
 - Smooth animations with Framer Motion
 - MongoDB Atlas integration
 - Government API integration for products
-- Pixabay API for product images
+- Pixabay API for product images..
 
 ## 🛠️ Tech Stack
 
